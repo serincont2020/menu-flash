@@ -56,9 +56,20 @@ import { Subcategoria3Service } from './subcategoria3/subcategoria3.service';
 import { TipoFacturaService } from './tipo_factura/tipo_factura.service';
 import { TipoPedidoService } from './tipo_pedido/tipo_pedido.service';
 import { UsuariosService } from './usuarios/usuarios.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
 
 @Module({
-  imports: [
+  imports: [TypeOrmModule.forRoot({
+    type:"postgres",
+    host:"localhost",
+    port: 5432,
+    username: 'postgres',
+    // password: 'Admin123*.',
+    database:'softrest',
+    entities: [join(__dirname,'**','*.entity.{ts,js}')],
+    synchronize: true
+    }),
     AuthModule, UsuariosModule, RolesModule, PersonasModule, RegistroModule, MesasModule, 
     PedidosModule, TipoFacturaModule, TipoPedidoModule, DetallePedidosModule, CategoriaModule, 
     Subcategoria1Module, Subcategoria2Module, Subcategoria3Module, BebidasModule, RecetaSub1Module, 
