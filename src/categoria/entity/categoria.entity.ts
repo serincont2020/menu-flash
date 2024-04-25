@@ -1,8 +1,9 @@
 import { BebidasData } from "src/bebidas/entity/bebidas.entity"
+import { DetallePedidosData } from "src/detalle_pedidos/entity/detalle_pedidos.entity"
 import { Subcategoria1Data } from "src/subcategoria1/entity/subcategoria1.entity"
 import { Subcategoria2Data } from "src/subcategoria2/entity/subcategoria2.entity"
 import { Subcategoria3Data } from "src/subcategoria3/entity/subcategoria3.entity"
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 export class CategoriaData {
@@ -24,4 +25,7 @@ export class CategoriaData {
     @ManyToOne(()=> BebidasData, (bebida)=> bebida.id_bebida)
     @JoinColumn({name: 'id_bebida'})
     id_bebida: BebidasData[]
+
+    @OneToMany(()=> DetallePedidosData, (detallePedidos)=> detallePedidos.id_categoria)
+    detalle_pedidos : DetallePedidosData[]
 }
