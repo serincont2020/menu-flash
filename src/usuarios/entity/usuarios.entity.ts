@@ -15,7 +15,7 @@ export class UsuariosData {
     @Column()
     nombre: string   
 
-    @Column()
+    @Column({unique:true})
     usuario: string
 
     @Column()
@@ -24,5 +24,4 @@ export class UsuariosData {
     @ManyToOne(()=> PersonasData, (personas)=> personas.usuario)
     @JoinColumn({name: 'id_persona'})
     id_persona: PersonasData[]
-
 }

@@ -58,6 +58,8 @@ import { TipoPedidoService } from './tipo_pedido/tipo_pedido.service';
 import { UsuariosService } from './usuarios/usuarios.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { UsuariosData } from './usuarios/entity/usuarios.entity';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -70,10 +72,13 @@ import { join } from 'path';
     entities: [join(__dirname,'**','*.entity.{ts,js}')],
     synchronize: true
     }),
+    TypeOrmModule.forFeature([
+      UsuariosData
+    ]),
     AuthModule, UsuariosModule, RolesModule, PersonasModule, RegistroModule, MesasModule, 
     PedidosModule, TipoFacturaModule, TipoPedidoModule, DetallePedidosModule, CategoriaModule, 
     Subcategoria1Module, Subcategoria2Module, Subcategoria3Module, BebidasModule, RecetaSub1Module, 
-    RecetaSub2Module, RecetaSub3Module, IngredientesModule],
+    RecetaSub2Module, RecetaSub3Module, IngredientesModule, JwtModule],
   controllers: [
     AuthController, BebidasController, CategoriaController, DetallePedidosController, IngredientesController,
     MesasController, PedidosController, PersonasController, RecetaSub1Controller, RecetaSub2Controller,
@@ -83,7 +88,7 @@ import { join } from 'path';
     AuthService, BebidasService, CategoriaService, DetallePedidosService, IngredientesService, MesasService,
     PedidosService, PersonasService, RecetaSub1Service, RecetaSub2Service, RecetaSub3Service, RegistroService,
     RolesService, Subcategoria1Service, Subcategoria2Service, Subcategoria3Service, TipoFacturaService,
-    TipoPedidoService, UsuariosService
+    TipoPedidoService, UsuariosService, JwtService
   ],
 })
 export class AppModule { }
