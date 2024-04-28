@@ -14,7 +14,7 @@ export class RecetaSub3Data {
     @OneToMany(()=> Subcategoria3Data, (subcategoria)=> subcategoria.id_receta)
     id_subcategoria3 : Subcategoria3Data[]
 
-    @OneToOne(() => IngredientesData, ingredientes => ingredientes.recetaSub3)
-    @JoinColumn()
-    ingredientes: IngredientesData
+    @ManyToOne(() => IngredientesData, ingredientes => ingredientes.recetaSub1)
+    @JoinColumn({name: 'ingredientes'})
+    ingredientes: IngredientesData[]
 }
