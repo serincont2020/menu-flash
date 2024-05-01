@@ -2,14 +2,16 @@ import { PedidosData } from "src/pedidos/entity/pedidos.entity"
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
-export class TipoPedidoData {
+export class ServicioData {
     @PrimaryGeneratedColumn()
-    id_tipo_pedido: number
+    id_servicio: number
 
     @Column()
-    nombre_tipo_pedido: string
+    servicio: number 
 
-    @OneToMany(()=> PedidosData, (pedidos)=> pedidos.id_tipo_pedido)
+    @Column()
+    disponible: boolean
+    
+    @OneToMany(()=> PedidosData, (pedidos)=> pedidos.servicio)
     pedidos : PedidosData[]
-
 }

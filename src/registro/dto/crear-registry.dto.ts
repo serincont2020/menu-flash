@@ -1,9 +1,9 @@
 import { MesasData } from "src/mesas/entity/mesas.entity"
 import { PedidosData } from "src/pedidos/entity/pedidos.entity"
-import { PersonasData } from "src/personas/entity/personas.entity"
+import { UsuariosData } from "src/usuarios/entity/usuarios.entity"
 
 export class CreateRegistryDto { 
     id_mesa: MesasData
-    id_persona: PersonasData
+    id_usuario: UsuariosData
     pedidos : PedidosData
 }

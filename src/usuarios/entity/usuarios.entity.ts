@@ -1,4 +1,3 @@
-import { PersonasData } from "src/personas/entity/personas.entity"
 import { RegistroData } from "src/registro/entity/registro.entity"
 import { RolesData } from "src/roles/entity/roles.entity"
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
@@ -13,7 +12,10 @@ export class UsuariosData {
     id_rol: RolesData    
 
     @Column()
-    nombre: string   
+    nombre: string  
+
+    @Column()
+    apellido: string
 
     @Column({unique:true})
     usuario: string
@@ -21,7 +23,10 @@ export class UsuariosData {
     @Column()
     contraseña: string
 
-    @ManyToOne(()=> PersonasData, (personas)=> personas.usuario)
-    @JoinColumn({name: 'id_persona'})
-    id_persona: PersonasData[]
+    @OneToMany(()=> RegistroData, (registro)=> registro.usuario)
+    registro: RegistroData[]
+
+    // @ManyToOne(()=> PersonasData, (personas)=> personas.usuario)
+    // @JoinColumn({name: 'id_persona'})
+    // id_persona: PersonasData[]
 }

@@ -1,9 +1,8 @@
-import { CategoriaData } from "src/categoria/entity/categoria.entity"
 import { DetallePedidosData } from "src/detalle_pedidos/entity/detalle_pedidos.entity"
-import { RecetaSub1Data } from "src/receta_sub1/entity/receta_sub1.entity"
-import { RecetaSub2Data } from "src/receta_sub2/entity/receta_sub2.entity"
-import { RecetaSub3Data } from "src/receta_sub3/entity/receta_sub3.entity"
+import { EstadoPedidosData } from "src/estado_pedidos/entity/estado_pedido.entity"
+import { ImpuestosData } from "src/impuestos/entity/impuestos.entity"
 import { RegistroData } from "src/registro/entity/registro.entity"
+import { ServicioData } from "src/servicio/entity/servicio.entity"
 import { TipoFacturaData } from "src/tipo_factura/entity/tipo_factura.entity"
 import { TipoPedidoData } from "src/tipo_pedido/entity/tipo_pedido.entity"
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
@@ -13,13 +12,12 @@ export class PedidosData {
     @PrimaryGeneratedColumn()
     id_pedido: number
 
-
     @ManyToOne(()=> TipoFacturaData, (tipoFactura)=> tipoFactura.pedidos)
     @JoinColumn({name: 'id_tipo_factura'})
     id_tipo_factura: TipoFacturaData[]
 
     @Column()
-    id_restaurante: number      //relacion con restaurante
+    id_restaurante: number      // relacion con restaurante ???
 
     @ManyToOne(()=> RegistroData, (registro)=> registro.pedidos)
     @JoinColumn({name: 'id_registro'})
@@ -32,7 +30,21 @@ export class PedidosData {
     @Column({ type: 'date' })
     fecha: Date
 
+    @Column()
+    comentarios: string
+
     @OneToMany(()=> DetallePedidosData, (detallePedidos)=> detallePedidos.id_pedido)
     detalle_pedido : DetallePedidosData[]
 
+    @ManyToOne(()=> EstadoPedidosData, (tipoPedido)=> tipoPedido.pedidos)
+    @JoinColumn({name: 'id_estado_pedido'})
+    id_estado_pedido: EstadoPedidosData[]
+
+    @ManyToOne(()=> ImpuestosData, (impuestos)=> impuestos.pedidos)
+    @JoinColumn({name: 'iva'})
+    iva: ImpuestosData[]
+
+    @ManyToOne(()=> ServicioData, (servicio)=> servicio.pedidos)
+    @JoinColumn({name: 'servicio'})
+    servicio: ServicioData[]
 }

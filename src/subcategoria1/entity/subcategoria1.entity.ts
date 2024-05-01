@@ -1,16 +1,16 @@
 import { CategoriaData } from "src/categoria/entity/categoria.entity"
-import { RecetaSub1Data } from "src/receta_sub1/entity/receta_sub1.entity"
+import { RecetaSubData } from "src/receta_sub1/entity/receta_sub1.entity"
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 
 @Entity()
-export class Subcategoria1Data {
+export class SubcategoriaData {
     @PrimaryGeneratedColumn()
-    id_subproducto1: number
+    id_subcategoria: number
 
-    @ManyToOne(()=> RecetaSub1Data, (receta)=> receta.id_subcategoria1)
+    @ManyToOne(()=> RecetaSubData, (receta)=> receta.id_subcategoria)
     @JoinColumn({name: 'id_receta'})
-    id_receta: RecetaSub1Data[]
+    id_receta: RecetaSubData[]
 
     @Column()
     nombre: string
@@ -18,6 +18,6 @@ export class Subcategoria1Data {
     @Column()
     precioProducto: number
 
-    @OneToMany(()=> CategoriaData, (categoria)=> categoria.id_subproducto1)
+    @OneToMany(()=> CategoriaData, (categoria)=> categoria.id_subcategoria)
     id_categoria : CategoriaData[]
 }

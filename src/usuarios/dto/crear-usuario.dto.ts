@@ -5,6 +5,7 @@ export class CreateUserDto {
     nombre?: string   
     usuario?: string
     contraseña?: string
+    apellido?: string 
 }
 
 export class LoginUserDto {

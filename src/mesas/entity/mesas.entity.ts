@@ -9,6 +9,9 @@ export class MesasData {
     @Column()
     num_mesa: number
 
+    @Column({default: true})
+    disponible: boolean
+
     @OneToMany(()=> RegistroData, (registro)=> registro.id_mesa)
     registro: RegistroData[]
 

@@ -1,8 +1,5 @@
 import { CategoriaData } from "src/categoria/entity/categoria.entity"
 import { PedidosData } from "src/pedidos/entity/pedidos.entity"
-import { RecetaSub1Data } from "src/receta_sub1/entity/receta_sub1.entity"
-import { RecetaSub2Data } from "src/receta_sub2/entity/receta_sub2.entity"
-import { RecetaSub3Data } from "src/receta_sub3/entity/receta_sub3.entity"
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
